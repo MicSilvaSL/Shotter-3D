@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsHolderSO
   weaponsSlots:
   - {fileID: 11400000, guid: 9b0fe11772c28f54c9582cadcd13f9fe, type: 2}
-  - {fileID: 11400000, guid: 1db548c45aa38be4f8cf3e59c6a9162f, type: 2}
   - {fileID: 0}
+  - {fileID: 11400000, guid: e361055ec4e41184bb5c4ffcf4a3f648, type: 2}
