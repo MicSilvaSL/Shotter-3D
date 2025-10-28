@@ -12,6 +12,11 @@ public class WeaponsHolderSO : ScriptableObject
 
 	private int _id;
 
+	public void Init()
+	{
+		_id = CheckValidSlot(0);
+	}
+
 	public ShotObjectSO GetCurrentShot()
 	{
 		return weaponsSlots[_id];
