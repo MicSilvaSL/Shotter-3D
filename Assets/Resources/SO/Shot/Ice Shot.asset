@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e2450392be6aa7468a7bac32578bde9, type: 3}
+  m_Name: Ice Shot
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileShot
+  <Icon>k__BackingField: {fileID: 21300000, guid: 06bff12edf9916347ba1e1aba42bff0f, type: 3}
+  <FireRate>k__BackingField: 0.01
+  ShotInstance: {fileID: 0}
