@@ -6,7 +6,7 @@ public class HealthHolderSO : ScriptableObject
 {
 
 	[SerializeField] private int maxHealth = 100;
-	[SerializeField] private float currentHealth = 100;
+	[SerializeField] private float currentHealth;
 
 	public event Action<float> OnHealthChange;
 
@@ -25,13 +25,21 @@ public class HealthHolderSO : ScriptableObject
 			else
 				currentHealth = value;
 
-			if (damaged)
-
 			OnHealthChange?.Invoke(currentHealth);
 		}
 	}
 	public int MaxHealth => maxHealth;
 
 	public void ResetHealth() => currentHealth = maxHealth;
-	
+
+	private void OnEnable()
+	{
+		currentHealth = maxHealth;
+	}
+
+	private void OnDisable()
+	{
+		currentHealth = 0;
+	}
+
 }

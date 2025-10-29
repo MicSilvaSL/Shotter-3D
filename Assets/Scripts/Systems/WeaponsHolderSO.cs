@@ -10,7 +10,22 @@ public class WeaponsHolderSO : ScriptableObject
 
 	public event Action<ShotObjectSO> OnChangeSlot;
 
-	private int _id;
+	private int _id = 0;
+
+	private void OnEnable()
+	{
+		if (weaponsSlots[_id] == null)
+		{
+			_id = Array.FindIndex(weaponsSlots, w => w != null);
+		}
+		else
+			_id = 0;
+	}
+
+	private void OnDisable()
+	{
+		_id = 0;
+	}
 
 	public void Init()
 	{

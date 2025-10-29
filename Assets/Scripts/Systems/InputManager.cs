@@ -8,6 +8,7 @@ public class InputManager : ScriptableObject, PlayerCoreInput.IPlayerActions
 	private PlayerCoreInput _input;
 
 	public Vector2 Walk {  get; private set; }
+	public Vector2 Look { get; private set; }
 
 	public event Action<int> ChangeWeapon;
 	public event Action ShotStarted;
@@ -33,6 +34,10 @@ public class InputManager : ScriptableObject, PlayerCoreInput.IPlayerActions
 	{
 		Walk = context.ReadValue<Vector2>();
 	}
+	public void OnLook(InputAction.CallbackContext context)
+	{
+		Look = context.ReadValue<Vector2>();
+	}
 
 	public void OnChangeWeapon(InputAction.CallbackContext context)
 	{
@@ -50,5 +55,4 @@ public class InputManager : ScriptableObject, PlayerCoreInput.IPlayerActions
 	}
 
 	
-
 }
