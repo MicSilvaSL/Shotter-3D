@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2450392be6aa7468a7bac32578bde9, type: 3}
   m_Name: Ice Shot
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileShot
-  <FireRate>k__BackingField: 0.01
+  <FireRate>k__BackingField: 0.32
   <Icon>k__BackingField: {fileID: 21300000, guid: 06bff12edf9916347ba1e1aba42bff0f, type: 3}
-  ShotInstance: {fileID: 3460660539175368033, guid: 7f20d0b9200dd5943868e4d9589243fe, type: 3}
+  shotPrefab: {fileID: 3460660539175368033, guid: 7f20d0b9200dd5943868e4d9589243fe, type: 3}
+  chargeShotPrefab: {fileID: 0}

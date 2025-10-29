@@ -5,22 +5,10 @@ using TMPro;
 public class DebugView : MonoBehaviour
 {
     [SerializeField] private Image image;
-	[SerializeField] private TMP_Text countHealthTxt;
-	[SerializeField] private HealthHolderSO health;
+	[SerializeField] private WeaponsHolderSO weapons;
 
-	private void OnEnable()
+	private void Update()
 	{
-		health.OnHealthChange += UpdateHealth;
-	}
-
-	private void UpdateHealth(float amount)
-	{
-		countHealthTxt.text = amount.ToString();
-		image.fillAmount = amount / health.MaxHealth;
-	}
-
-	private void OnDisable()
-	{
-		health.OnHealthChange -= UpdateHealth;
+		image.fillAmount = weapons.ChargeProgress;
 	}
 }

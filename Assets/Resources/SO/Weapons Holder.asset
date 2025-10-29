@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48babe9e760410a4b925315fec588df4, type: 3}
   m_Name: Weapons Holder
   m_EditorClassIdentifier: Assembly-CSharp::WeaponsHolderSO
-  weaponsSlots:
+  <MaxRange>k__BackingField: 10
+  Slots:
   - {fileID: 11400000, guid: 9b0fe11772c28f54c9582cadcd13f9fe, type: 2}
+  - {fileID: 11400000, guid: 1db548c45aa38be4f8cf3e59c6a9162f, type: 2}
   - {fileID: 0}
-  - {fileID: 0}
+  chargeShotTime: 0.5

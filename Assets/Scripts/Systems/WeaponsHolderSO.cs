@@ -1,22 +1,31 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 [CreateAssetMenu(fileName = "WeaponsHolderSO", menuName = "Weapons/Holder")]
 public class WeaponsHolderSO : ScriptableObject
 {
 	public const int MAX_WEAPON = 3;
 
-	[SerializeField] private ShotObjectSO[] weaponsSlots;
+	[field: SerializeField] public float MaxRange { get; private set; }
+
+	[SerializeField] private ShotObjectSO[] Slots;
+	[SerializeField] private float chargeShotTime;
 
 	public event Action<ShotObjectSO> OnChangeSlot;
 
 	private int _id = 0;
+	private bool _isCharged;
+	private float _chargeProgress;
+
+	public float ChargeProgress => _chargeProgress;
+	public bool IsCharged => _isCharged;
 
 	private void OnEnable()
 	{
-		if (weaponsSlots[_id] == null)
+		if (Slots[_id] == null)
 		{
-			_id = Array.FindIndex(weaponsSlots, w => w != null);
+			_id = Array.FindIndex(Slots, w => w != null);
 		}
 		else
 			_id = 0;
@@ -34,8 +43,61 @@ public class WeaponsHolderSO : ScriptableObject
 
 	public ShotObjectSO GetCurrentShot()
 	{
-		return weaponsSlots[_id];
+		return Slots[_id];
 	}
+
+	#region Shoot
+	public void Shoot(Vector3 shotPoint, Vector3 direction) 
+	{
+		Slots[_id].Shot(shotPoint, direction);
+	}
+	public void ShootCharge(Vector3 shotPoint, Vector3 direction) 
+	{
+		if (CanCharge() && !_isCharged)
+			return;
+
+		((ProjectileShotSO)Slots[_id]).ChangeShot(shotPoint, direction);
+
+	}
+
+	public bool CanCharge()
+	{
+		if (Slots[_id] is not ProjectileShotSO)
+			return false;
+
+		ProjectileShotSO shot = (ProjectileShotSO)Slots[_id];
+
+		if (shot == null || !shot.HasChargeShot())
+			return false;
+
+		return true;
+	}
+
+	public void ResetCharge()
+	{
+		_isCharged = false;
+		_chargeProgress = 0;
+	}
+
+	public IEnumerator EChargeShot() 
+	{
+		if (!CanCharge())
+			yield break;
+
+		float timeElasped = 0;
+		while (timeElasped < chargeShotTime)
+		{
+			_chargeProgress = timeElasped / chargeShotTime;
+
+			timeElasped += Time.deltaTime;
+			yield return null;
+		}
+
+		_chargeProgress = 1;
+		_isCharged = true;
+	}
+
+	#endregion
 
 	public void ChangeCurrentSlot(int amount = 1) 
 	{
@@ -45,16 +107,16 @@ public class WeaponsHolderSO : ScriptableObject
 
 		_id = CheckValidSlot(nextId);
 
-		OnChangeSlot?.Invoke(weaponsSlots[_id]);
+		OnChangeSlot?.Invoke(Slots[_id]);
 
 	}
 
 	private int CheckValidId(int id)
 	{
-		if (id > weaponsSlots.Length - 1)
+		if (id > Slots.Length - 1)
 			id = 0;
 		else if (id < 0)
-			id = weaponsSlots.Length - 1;
+			id = Slots.Length - 1;
 
 		return id;
 	}
@@ -62,7 +124,7 @@ public class WeaponsHolderSO : ScriptableObject
 	{
 		id = CheckValidId(id);
 
-		if (weaponsSlots[id] == null)
+		if (Slots[id] == null)
 			return CheckValidSlot(id + (int)Mathf.Sign(id - _id));
 		else
 			return id;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2450392be6aa7468a7bac32578bde9, type: 3}
   m_Name: Normal Shot
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileShot
-  <FireRate>k__BackingField: 0.06
+  <FireRate>k__BackingField: 0.2
   <Icon>k__BackingField: {fileID: 21300000, guid: 45287f76da168424d9fbadebfba1fcd3, type: 3}
   shotPrefab: {fileID: 7890009494309789856, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
   chargeShotPrefab: {fileID: 6693264363831094818, guid: a3063a1aa68a4e94dafbd43125c43bfa, type: 3}
