@@ -29,6 +29,11 @@ public class WeaponHolder : MonoBehaviour
 		input.ShotCanceled -= ShotCancel;
 	}
 
+	private void Start()
+	{
+		
+	}
+
 	private void ShotCancel()
 	{
 		

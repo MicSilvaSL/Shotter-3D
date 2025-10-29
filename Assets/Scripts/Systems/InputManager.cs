@@ -9,8 +9,13 @@ public class InputManager : ScriptableObject, PlayerCoreInput.IPlayerActions
 
 	public Vector2 Walk {  get; private set; }
 	public Vector2 Look { get; private set; }
+	public bool Jump { get; private set; }
+
+	public event Action JumpStart;
+	public event Action JumpCancel;
 
 	public event Action<int> ChangeWeapon;
+
 	public event Action ShotStarted;
 	public event Action ShotCanceled;
 
@@ -54,5 +59,17 @@ public class InputManager : ScriptableObject, PlayerCoreInput.IPlayerActions
 
 	}
 
-	
+	public void OnJump(InputAction.CallbackContext context)
+	{
+		if (context.phase == InputActionPhase.Started) 
+		{
+			JumpStart?.Invoke();
+			Jump = true;
+		}
+		else if (context.phase == InputActionPhase.Canceled) 
+		{
+			JumpCancel?.Invoke();
+			Jump = false;
+		}
+	}
 }
