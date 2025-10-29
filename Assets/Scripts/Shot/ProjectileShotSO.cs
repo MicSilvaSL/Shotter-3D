@@ -3,20 +3,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ProjectableShot", menuName = "Weapons/Shots/Projectile")]
 public class ProjectileShotSO : ShotObjectSO
 {
-	[field: SerializeField] public float FireRate { get; private set; } = 0.1f;
 
-	[SerializeField] private GameObject ShotInstance;
+	[SerializeField] private ProjectileBase shotPrefab;
+	[SerializeField] private ProjectileBase chargeShotPrefab;
 
-	private void OnValidate()
+	public override void Shot(Vector3 shotPoint, Vector3 direction)
 	{
-		if (FireRate < 0)
-			FireRate = 0.1f;
-		else
-			FireRate = Mathf.Abs(FireRate);
+		ProjectileBase shotInstance = Instantiate(shotPrefab, shotPoint, Quaternion.identity);
+		shotInstance.SetMovement(direction);
 	}
 
-	public override void Shot()
+	public void ChangeShot(Vector3 shotPoint, Vector3 direction) 
 	{
-		
+		ProjectileBase shotInstance = Instantiate(chargeShotPrefab, shotPoint, Quaternion.identity);
+		shotInstance.SetMovement(direction);
 	}
+
+	public bool HasChargeShot() => chargeShotPrefab != null;
 }
