@@ -47,16 +47,16 @@ public class WeaponsHolderSO : ScriptableObject
 	}
 
 	#region Shoot
-	public void Shoot(Vector3 shotPoint, Vector3 direction) 
+	public void Shoot(Vector3 shotPoint, Vector3 direction, string[] damageTags) 
 	{
-		Slots[_id].Shot(shotPoint, direction);
+		Slots[_id].Shot(shotPoint, direction, damageTags);
 	}
-	public void ShootCharge(Vector3 shotPoint, Vector3 direction) 
+	public void ShootCharge(Vector3 shotPoint, Vector3 direction, string[] damageTags) 
 	{
-		if (CanCharge() && !_isCharged)
+		if (!CanCharge() || !_isCharged)
 			return;
 
-		((ProjectileShotSO)Slots[_id]).ChangeShot(shotPoint, direction);
+		((ProjectileShotSO)Slots[_id]).ChangeShot(shotPoint, direction, damageTags);
 
 	}
 
@@ -75,6 +75,8 @@ public class WeaponsHolderSO : ScriptableObject
 
 	public void ResetCharge()
 	{
+		if (!_isCharged || _chargeProgress <= 0) return;
+
 		_isCharged = false;
 		_chargeProgress = 0;
 	}

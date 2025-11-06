@@ -9,6 +9,9 @@ public class HealthHolderSO : ScriptableObject
 	[SerializeField] private float currentHealth;
 
 	public event Action<float> OnHealthChange;
+	public event Action OnDeath;
+
+	public bool IsAlive => currentHealth > 0;
 
 	public float CurrentHealth 
 	{
@@ -18,8 +21,11 @@ public class HealthHolderSO : ScriptableObject
 		{
 			bool damaged = Mathf.Sign(value - currentHealth) < 0;
 
-			if (value < 0)
+			if (value <= 0) 
+			{
 				currentHealth = 0;
+				OnDeath?.Invoke();
+			}
 			else if (value >= maxHealth) 
 				currentHealth = maxHealth;
 			else

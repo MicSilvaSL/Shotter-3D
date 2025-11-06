@@ -12,6 +12,6 @@ public abstract class ShotObjectSO : ScriptableObject
 			FireRate = Mathf.Abs(FireRate);
 	}
 
-	public abstract void Shot(Vector3 shotPoint, Vector3 direction);
+	public abstract void Shot(Vector3 shotPoint, Vector3 direction, string[] damageTags);
     
 }

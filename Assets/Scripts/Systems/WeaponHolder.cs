@@ -7,6 +7,7 @@ public class WeaponHolder : MonoBehaviour
     [SerializeField] private InputManager input;
 	[SerializeField] private WeaponsHolderSO weapons;
 	[SerializeField] private Transform weaponShotPoint;
+	[SerializeField] private string[] damageTags;
 
 	private Camera _mainCam;
 	private Coroutine e_chargeShot;
@@ -54,7 +55,7 @@ public class WeaponHolder : MonoBehaviour
 		if (e_chargeShot != null)
 			StopCoroutine(e_chargeShot);
 
-		weapons.ShootCharge(weaponShotPoint.position, _weaponDirection);
+		weapons.ShootCharge(weaponShotPoint.position, _weaponDirection, damageTags);
 
 		weapons.ResetCharge();
 	}
@@ -70,7 +71,7 @@ public class WeaponHolder : MonoBehaviour
 		if (e_chargeShot != null)
 			StopCoroutine(e_chargeShot);
 
-		shot.Shot(weaponShotPoint.position, _weaponDirection);
+		shot.Shot(weaponShotPoint.position, _weaponDirection, damageTags);
 
 		e_chargeShot = StartCoroutine(weapons.EChargeShot());
 	}
@@ -98,7 +99,6 @@ public class WeaponHolder : MonoBehaviour
 	{
 		weapons.ChangeCurrentSlot(side);
 	}
-
 
 	private void OnDrawGizmos()
 	{
