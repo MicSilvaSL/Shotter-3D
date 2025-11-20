@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9198cd7473664444e937da3ad3df62d4, type: 3}
-  m_Name: Light Laser Shot
-  m_EditorClassIdentifier: Assembly-CSharp::LaserShot
+  m_Script: {fileID: 11500000, guid: 09dff6af40f0c3748a31f147b7bec990, type: 3}
+  m_Name: Laser
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
   <Icon>k__BackingField: {fileID: 21300000, guid: 038dc0da2ab5af14eb9af76dd67f5264, type: 3}
-  <TickRate>k__BackingField: 0.5
+  <Name>k__BackingField: Laser
+  <FireRate>k__BackingField: 0.1
+  <Damage>k__BackingField: 3

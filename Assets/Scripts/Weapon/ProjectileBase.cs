@@ -9,7 +9,6 @@ public class ProjectileBase : MonoBehaviour
 	[SerializeField] private float damage = 4;
 
 	private Rigidbody _rb;
-	private string[] _targetsTags;
 
 	private void Awake()
 	{
@@ -17,31 +16,21 @@ public class ProjectileBase : MonoBehaviour
 		GetComponent<Collider>().isTrigger = true;
 	}
 
-	public void SetMovement(Vector3 direction)
+	public virtual void SetMovement(Vector3 direction)
     {
 		_rb.AddForce(direction.normalized * speed, ForceMode.Impulse);
 		Destroy(this.gameObject, lifeTime);
     }
-
-	public void SetTargets(params string[] targets) 
-	{
-		_targetsTags = targets;
+	public void SetDamage(float damage) 
+	{ 
+		this.damage = Mathf.Clamp(damage, 0.1f, Mathf.Infinity);
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-		foreach (string target in _targetsTags)
+		if (other.gameObject.TryGetComponent(out Damageble damageble)) 
 		{
-			if (other.CompareTag(target)) 
-			{
-				if (other.gameObject.TryGetComponent(out IDamageble damageble)) 
-				{
-					damageble.TakeDamage(this.transform.position, damage);
-				}
-
-				Destroy(this.gameObject);
-				break;
-			}
+			damageble.TakeDamage(damage);
 		}
 	}
 }

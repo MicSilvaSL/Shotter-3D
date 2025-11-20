@@ -3,26 +3,28 @@ using UnityEngine.UI;
 
 public class WeaponUI : MonoBehaviour
 {
-    [SerializeField] private WeaponsHolderSO weapon;
+	[SerializeField] private PlayerData playerData;
     [SerializeField] private Image weaponIcon;
+	[SerializeField] private Image weaponChargeFill;
 
 	private void OnEnable()
 	{
-		weapon.OnChangeSlot += OnChangeSlot;
+		WeaponController.OnChangeWeapon += OnChangeSlot;
+		ProjectileWeapon.OnChargeWeapon += OnChargeWeapon;
 	}
 
-	private void Start()
+	private void OnChangeSlot(Weapon weaponObj)
 	{
-		weaponIcon.sprite = weapon.GetCurrentShot().Icon;
+		weaponIcon.sprite = weaponObj.Data.Icon;
 	}
-
-	private void OnChangeSlot(ShotObjectSO shotObj)
+	private void OnChargeWeapon(float amount)
 	{
-		weaponIcon.sprite = shotObj.Icon;
+		weaponChargeFill.fillAmount = amount;
 	}
 
 	private void OnDisable()
 	{
-		weapon.OnChangeSlot -= OnChangeSlot;
+		WeaponController.OnChangeWeapon -= OnChangeSlot;
+		ProjectileWeapon.OnChargeWeapon -= OnChargeWeapon;
 	}
 }

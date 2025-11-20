@@ -25,6 +25,7 @@ public class InputManager : ScriptableObject, PlayerCoreInput.IPlayerActions
 		{
 			_input = new PlayerCoreInput();
 			_input.Player.SetCallbacks(this);
+			
 		}
 
 		_input.Enable();

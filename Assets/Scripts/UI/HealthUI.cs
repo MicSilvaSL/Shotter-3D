@@ -1,8 +1,8 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-public class DebugHealthUI : MonoBehaviour
+public class HealthUI : MonoBehaviour
 {
 	[SerializeField] private HealthSystem health;
 
