@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class Damageble : MonoBehaviour
 {
-	[SerializeField] private UnityEvent<float> OnDamage;
+	[SerializeField] private UnityEvent<float> OnDamageTaken;
+	[SerializeField] private UnityEvent OnDamage;
 
 	public void TakeDamage(float damage) 
 	{
-		OnDamage.Invoke(damage);
+		OnDamageTaken.Invoke(damage);
+		OnDamage.Invoke();
 	}
 
 }
