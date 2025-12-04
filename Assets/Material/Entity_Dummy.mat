@@ -44,7 +44,7 @@ Material:
     - _fresnel_trigger: 0
     m_Colors:
     - _base_color: {r: 1, g: 0.49803922, b: 0, a: 1}
-    - _fresnel_color: {r: 2, g: 0, b: 0, a: 1}
+    - _fresnel_color: {r: 3.9999998, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3965351319958462546

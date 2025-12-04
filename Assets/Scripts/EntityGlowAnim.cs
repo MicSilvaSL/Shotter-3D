@@ -43,7 +43,7 @@ public class EntityGlowAnim : MonoBehaviour
 
 			timeElapsed += Time.deltaTime;
 
-			_entityMat.SetFloat(FRESNEL_POWER, Mathf.Lerp(0.3f, 1, t));
+			_entityMat.SetFloat(FRESNEL_POWER, Mathf.Lerp(0.3f, 5, t));
 
 			yield return null;
 		}

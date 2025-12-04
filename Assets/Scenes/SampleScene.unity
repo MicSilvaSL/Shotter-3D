@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 192990767}
   - component: {fileID: 192990766}
   - component: {fileID: 192990772}
+  - component: {fileID: 192990773}
   m_Layer: 7
   m_Name: Dummy
   m_TagString: Enemy
@@ -425,9 +426,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b64fc49a20247924b9b0cbc6468579bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damageble
-  OnDamage:
+  OnDamageTaken:
     m_PersistentCalls:
       m_Calls: []
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 192990773}
+        m_TargetAssemblyTypeName: EntityGlowAnim, Assembly-CSharp
+        m_MethodName: TriggerGlow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &192990773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192990764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b059244bca78684468391f895f57e044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityGlowAnim
+  _timeGlowAnim: 0.5
+  _fresnelAmount: 0
 --- !u!1 &307557823
 GameObject:
   m_ObjectHideFlags: 0
