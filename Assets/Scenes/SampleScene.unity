@@ -1931,8 +1931,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1232701740}
   - component: {fileID: 1232701741}
+  - component: {fileID: 1232701744}
   - component: {fileID: 1232701742}
   - component: {fileID: 1232701743}
+  - component: {fileID: 1232701745}
   m_Layer: 3
   m_Name: Weapons
   m_TagString: Untagged
@@ -1968,8 +1970,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHolder
   input: {fileID: 11400000, guid: f4a11546d08485943898f9605e7fe5ec, type: 2}
-  weaponShotPoint: {fileID: 1347711503}
-  maxRange: 5
 --- !u!114 &1232701742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2004,6 +2004,33 @@ MonoBehaviour:
   chargeShootPrefab: {fileID: 0}
   chargeTime: 0
   canCharge: 0
+--- !u!114 &1232701744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232701739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc488947dd8fa9446819fa25b8900d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponAim
+  weaponShotPoint: {fileID: 1347711503}
+  maxRange: 10
+--- !u!114 &1232701745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232701739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1748373e6df3f614a8137d21b736270c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaserWeapon
+  data: {fileID: 11400000, guid: fc9c16c1a98ba4c40b65b45bb16219e0, type: 2}
 --- !u!1 &1325144931
 GameObject:
   m_ObjectHideFlags: 0
@@ -7262,8 +7289,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   speed: 2
-  gravity: 2
-  jumpHeight: 5
+  gravity: 0.2
+  jumpHeight: 10
   groundCheckRadius: 0.45
 --- !u!1 &1551181953
 GameObject:

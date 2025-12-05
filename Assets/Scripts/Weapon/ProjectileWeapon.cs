@@ -17,7 +17,7 @@ public class ProjectileWeapon : Weapon
 	private bool _isFullyCharged;
 	private float _chargeTimer;
 	
-	private float _nextShootTime;
+	
 
 	private void OnDisable()
 	{
@@ -53,15 +53,15 @@ public class ProjectileWeapon : Weapon
 		OnChargeWeapon?.Invoke(_chargeTimer / chargeTime);
 	}
 
-	public override void StartShoot(Ray aim)
+	public override void StartShoot()
 	{
-		if (_nextShootTime > Time.time)
+		if (!base.CanShoot())
 			return;
 
-		_nextShootTime = Time.time + base.Data.FireRate;
+		base.SetNextShootTime();
 		
-		ProjectileBase shotInstance = Instantiate(shootPrefab, aim.origin, Quaternion.identity);
-		shotInstance.SetMovement(aim.direction);
+		ProjectileBase shotInstance = Instantiate(shootPrefab, base.WeaponAim.Aim.origin, Quaternion.identity);
+		shotInstance.SetMovement(base.WeaponAim.Aim.direction);
 		shotInstance.SetDamage(base.Data.Damage);
 
 		_isFullyCharged = false;
@@ -73,12 +73,12 @@ public class ProjectileWeapon : Weapon
 		_chargeTimer = 0;
 	}
 
-	public override void EndShoot(Ray aim)
+	public override void EndShoot()
 	{
 		if (!_isFullyCharged) return;
 
-		ProjectileBase shotInstance = Instantiate(chargeShootPrefab, aim.origin, Quaternion.identity);
-		shotInstance.SetMovement(aim.direction);
+		ProjectileBase shotInstance = Instantiate(chargeShootPrefab, base.WeaponAim.Aim.origin, Quaternion.identity);
+		shotInstance.SetMovement(base.WeaponAim.Aim.direction);
 		shotInstance.SetDamage(base.Data.Damage * 2);
 
 		_chargeTimer = 0;

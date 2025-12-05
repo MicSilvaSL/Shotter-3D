@@ -231,7 +231,7 @@ public partial class @PlayerCoreInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""57fe9aca-d10b-42c6-a015-fa38d4ad562c"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Fire"",

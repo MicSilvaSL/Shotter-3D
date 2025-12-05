@@ -31,8 +31,10 @@ public class PlayerMotor : MonoBehaviour
 
 	private void Jump()
 	{
-		if (_isGrounded)
-			_velocity.y = jumpHeight * Time.deltaTime;
+		if (!_isGrounded)
+			return;
+
+		_velocity.y = jumpHeight * Time.deltaTime;
 	}
 
 	void Update()
@@ -41,11 +43,11 @@ public class PlayerMotor : MonoBehaviour
 
 		_isGrounded = Physics.CheckSphere(groundCheckPos.position, groundCheckRadius, groundLayer);
 		
-		_controller.Move( movement * speed * Time.deltaTime);
+		_controller.Move(movement * speed * Time.deltaTime);
 		
 		if (!_isGrounded)
 		{
-			_velocity.y += -gravity * Time.deltaTime * Time.deltaTime;
+			_velocity.y += -Mathf.Abs(gravity) * Time.deltaTime;
 		}
 		else if (_isGrounded && _velocity.y < 0f)
 		{ 
