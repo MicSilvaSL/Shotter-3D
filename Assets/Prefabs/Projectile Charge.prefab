@@ -64,6 +64,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 927374282917383936, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931756740691298855, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202532581195364545, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0.2687561
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745719820901499466, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
+      propertyPath: SizeModule.curve.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745719820901499466, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
+      propertyPath: SizeModule.curve.minScalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745719820901499466, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745719820901499466, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.52179044
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082572241232473464, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7890009494309789856, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
       propertyPath: speed
       value: 50
