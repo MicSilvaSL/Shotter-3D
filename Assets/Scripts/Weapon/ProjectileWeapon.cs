@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ProjectileWeapon : Weapon
 {
@@ -10,13 +11,16 @@ public class ProjectileWeapon : Weapon
 	[SerializeField] private float chargeTime;
 	[SerializeField] private bool canCharge;
 
-	public static event Action<float> OnChargeWeapon;
-	public static event Action OnFullyChageWeapon;
+	public UnityEvent OnStartChargeWeapon;
+	public UnityEvent<float> OnChargeWeapon;
+	public UnityEvent OnFullyChageWeapon;
+	public UnityEvent OnRelaseChargeWeapon;
+	public UnityEvent OnCancelChargeWeapon;
 
 	private bool _isCharging;
 	private bool _isFullyCharged;
 	private float _chargeTimer;
-	
+	private bool _chargeThreshold;
 	
 
 	private void OnDisable()
@@ -43,14 +47,21 @@ public class ProjectileWeapon : Weapon
 
 		_chargeTimer += Time.deltaTime;
 
+		if (_chargeTimer > chargeTime * 0.3f && !_chargeThreshold) 
+		{
+			OnStartChargeWeapon.Invoke();
+			_chargeThreshold = true;
+		}
+			
+
 		if (_chargeTimer >= chargeTime) 
 		{
 			_chargeTimer = chargeTime;
 			_isFullyCharged = true;
-			OnFullyChageWeapon?.Invoke();
+			OnFullyChageWeapon.Invoke();
 		}
 
-		OnChargeWeapon?.Invoke(_chargeTimer / chargeTime);
+		OnChargeWeapon.Invoke(_chargeTimer / chargeTime);
 	}
 
 	public override void StartShoot()
@@ -75,17 +86,22 @@ public class ProjectileWeapon : Weapon
 
 	public override void EndShoot()
 	{
+		_chargeTimer = 0;
+		_isCharging = false;
+		_chargeThreshold = false;
+
+		OnCancelChargeWeapon.Invoke();
+
 		if (!_isFullyCharged) return;
 
 		ProjectileBase shotInstance = Instantiate(chargeShootPrefab, base.WeaponAim.Aim.origin, Quaternion.identity);
 		shotInstance.SetMovement(base.WeaponAim.Aim.direction);
 		shotInstance.SetDamage(base.Data.Damage * 2);
 
-		_chargeTimer = 0;
-		_isCharging = false;
 		_isFullyCharged = false;
 
-		OnChargeWeapon?.Invoke(0);
+		OnChargeWeapon.Invoke(0);
+		OnRelaseChargeWeapon.Invoke();
 	}
 
 

@@ -10,7 +10,7 @@ public class WeaponUI : MonoBehaviour
 	private void OnEnable()
 	{
 		WeaponController.OnChangeWeapon += OnChangeSlot;
-		ProjectileWeapon.OnChargeWeapon += OnChargeWeapon;
+		
 	}
 
 	private void OnChangeSlot(Weapon weaponObj)
@@ -25,6 +25,5 @@ public class WeaponUI : MonoBehaviour
 	private void OnDisable()
 	{
 		WeaponController.OnChangeWeapon -= OnChangeSlot;
-		ProjectileWeapon.OnChargeWeapon -= OnChargeWeapon;
 	}
 }
