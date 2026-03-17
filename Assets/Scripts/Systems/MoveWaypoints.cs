@@ -37,7 +37,7 @@ public class MovePathways : MonoBehaviour , IMovePosition
 		this.transform.position += direction.normalized * _internalSpeed * Time.deltaTime;
 	}
 
-	public void SetMovementPercent(float percent) => _movePercent = Mathf.Clamp(Mathf.Abs(percent), 0.1f, 1);
+	public void SetMovementPercent(float percent = 1) => _movePercent = Mathf.Clamp(Mathf.Abs(percent), 0.1f, 1);
 
 	private void OnDrawGizmos()
 	{

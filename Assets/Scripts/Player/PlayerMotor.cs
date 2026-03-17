@@ -71,5 +71,5 @@ public class PlayerMotor : MonoBehaviour, IMovePosition
 		_controller.Move(direction * _internalSpeed * Time.deltaTime);
 	}
 
-	public void SetMovementPercent(float percent) => _movePercent = Mathf.Clamp(Mathf.Abs(percent), 1, 100);
+	public void SetMovementPercent(float percent = 1) => _movePercent = Mathf.Clamp(Mathf.Abs(percent), 1, 100);
 }

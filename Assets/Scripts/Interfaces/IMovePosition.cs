@@ -4,5 +4,5 @@ public interface IMovePosition
 {
 	void MoveDirection(Vector3 direction);
 
-	void SetMovementPercent(float percent);
+	void SetMovementPercent(float percent = 1);
 }
