@@ -51,6 +51,8 @@ public class WeaponController : MonoBehaviour
 
 		nextId = SetValidId(nextId);
 
+		OnShotCancel();
+
 		_id = CheckValidSlot(nextId);
 		
 		SetCurrentWeapon();

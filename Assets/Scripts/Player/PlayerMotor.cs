@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMotor : MonoBehaviour
+public class PlayerMotor : MonoBehaviour, IMovePosition
 {
     [SerializeField] private InputManager input;
 	[SerializeField] private Transform groundCheckPos;
@@ -14,10 +14,13 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController _controller;
 	private bool _isGrounded = false;
     private Vector3 _velocity;
+	private float _internalSpeed;
+	private float _movePercent = 1;
 
 	private void Awake()
 	{
 		_controller = GetComponent<CharacterController>();
+		_internalSpeed = speed;
     }
 
 	private void OnEnable()
@@ -39,11 +42,9 @@ public class PlayerMotor : MonoBehaviour
 
 	void Update()
     {
-		Vector3 movement = this.transform.forward * input.Walk.y + this.transform.right * input.Walk.x;
-
 		_isGrounded = Physics.CheckSphere(groundCheckPos.position, groundCheckRadius, groundLayer);
-		
-		_controller.Move(movement * speed * Time.deltaTime);
+
+		MoveDirection(this.transform.forward * input.Walk.y + this.transform.right * input.Walk.x);
 		
 		if (!_isGrounded)
 		{
@@ -64,5 +65,11 @@ public class PlayerMotor : MonoBehaviour
 		Gizmos.DrawWireSphere(groundCheckPos.position, groundCheckRadius);
 	}
 
+	public void MoveDirection(Vector3 direction)
+	{
+		_internalSpeed = speed * _movePercent;
+		_controller.Move(direction * _internalSpeed * Time.deltaTime);
+	}
 
+	public void SetMovementPercent(float percent) => _movePercent = Mathf.Clamp(Mathf.Abs(percent), 1, 100);
 }
