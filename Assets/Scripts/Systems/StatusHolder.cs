@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StatusHolder : MonoBehaviour
 {
-    private Dictionary<StatusEffect, float> _timerByEffect = new();
+    private Dictionary<StatusEffect, StatusData> _timerByEffect = new();
 	private List<StatusEffect> _removeEffects = new();
 
 	private bool _hasStarted = false;
@@ -21,7 +21,7 @@ public class StatusHolder : MonoBehaviour
 
         foreach(StatusEffect status in _timerByEffect.Keys)
         {
-            if (Time.time > _timerByEffect[status])
+            if (Time.time > _timerByEffect[status].timeToEnd)
             {
                 _removeEffects.Add(status);
                 status.ResetStatusEffect(this.transform);
@@ -30,7 +30,8 @@ public class StatusHolder : MonoBehaviour
         }
 
         for (int i = 0; i < _removeEffects.Count; i++) 
-        { 
+        {
+            Destroy(_timerByEffect[_removeEffects[i]].feedback);
             _timerByEffect.Remove(_removeEffects[i]);
         }
 
@@ -46,13 +47,24 @@ public class StatusHolder : MonoBehaviour
         if (effect == null) return;
 
         if (!_timerByEffect.ContainsKey(effect))
-			_timerByEffect.Add(effect, Time.time + effect.Duration);
+        {
+            GameObject feedbackInstance = effect.FeedbackPrefab != null ? Instantiate(effect.FeedbackPrefab, this.transform.position, Quaternion.identity) : null;
+            feedbackInstance.transform.SetParent(this.transform);
+
+			_timerByEffect.Add(effect, new StatusData { timeToEnd = Time.time + effect.Duration, feedback = feedbackInstance });
+		}
         else
-			_timerByEffect[effect] = Time.time + effect.Duration;
+			_timerByEffect[effect].timeToEnd = Time.time + effect.Duration;
 
         effect.SetStatusEffect(this.transform);
 
         _hasStarted = true;
 
 	}
+
+    private class StatusData
+    {
+        public float timeToEnd = 0;
+        public GameObject feedback;
+    }
 }

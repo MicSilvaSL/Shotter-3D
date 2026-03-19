@@ -12459,6 +12459,7 @@ MonoBehaviour:
   chargeTrails: {fileID: 1990372908}
   chargeCompletedTrails: {fileID: 363002791}
   chargeVisual: {fileID: 1221249717}
+  _collider: {fileID: 1990372906}
 --- !u!1 &1500425482
 GameObject:
   m_ObjectHideFlags: 0
@@ -18223,7 +18224,7 @@ GameObject:
   - component: {fileID: 1990372908}
   - component: {fileID: 1990372907}
   - component: {fileID: 1990372906}
-  m_Layer: 2
+  m_Layer: 3
   m_Name: ChargeParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

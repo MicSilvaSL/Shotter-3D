@@ -34,19 +34,21 @@ public class ProjectileBase : MonoBehaviour
 		if (other.gameObject.TryGetComponent(out Damageble damageble)) 
 		{
 			damageble.TakeDamage(damage);
+			
+			if (effectOnContact == null)
+				return;
+
+			if (other.TryGetComponent(out StatusHolder statusHolder))
+				statusHolder.AddEffect(effectOnContact);
+			else
+			{
+				StatusHolder stats = other.AddComponent<StatusHolder>();
+				stats.AddEffect(effectOnContact);
+			}
+
+
 		}
 
-		if (effectOnContact == null)
-			return;
-
-		if(other.TryGetComponent(out StatusHolder statusHolder))
-		{
-			statusHolder.AddEffect(effectOnContact);
-		}
-		else
-		{
-			StatusHolder stats = other.AddComponent<StatusHolder>();
-			stats.AddEffect(effectOnContact);
-		}
+		
 	}
 }

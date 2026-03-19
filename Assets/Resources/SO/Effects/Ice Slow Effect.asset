@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7457c446faeadd4abb98a69de51c0c8, type: 3}
   m_Name: Ice Slow Effect
   m_EditorClassIdentifier: Assembly-CSharp::SlowStatusEffect
-  duration: 1
+  duration: 2
+  feedbackPrefab: {fileID: 1214887684965162541, guid: 3e80f2af674bef44ebf0fc684c6a2cbd, type: 3}
   movementCapPercent: 0.404
