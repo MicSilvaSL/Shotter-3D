@@ -396,31 +396,12 @@ PrefabInstance:
       propertyPath: damage
       value: 5.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7890009494309789856, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
+      propertyPath: effectOnContact
+      value: 
+      objectReference: {fileID: 11400000, guid: af8ce44e6cd17d647be681539380645d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 175182673702864356, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2320825673996784896}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
---- !u!1 &6851683737111220261 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 175182673702864356, guid: 97f00206cd552eb40b4193456a93da25, type: 3}
-  m_PrefabInstance: {fileID: 6735218696258131393}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2320825673996784896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6851683737111220261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da0cee437cddc7a4c958355592cdede6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SlowMovementOnContact
-  movementCapPercent: 0.1
-  slowedTime: 2.3
-  timeRecoveryTime: 0
