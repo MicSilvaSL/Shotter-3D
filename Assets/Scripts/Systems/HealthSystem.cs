@@ -35,7 +35,7 @@ public class HealthSystem : MonoBehaviour
 		else if (amount >= maxHealth)
 			CurrentHealth = maxHealth;
 		else
-			CurrentHealth = amount;
+			CurrentHealth = amount; 
 	}
 
 	public void ReduceHealth(float reduceAmount)

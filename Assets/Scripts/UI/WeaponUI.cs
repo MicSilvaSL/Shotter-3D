@@ -1,29 +1,21 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WeaponUI : MonoBehaviour
 {
-	[SerializeField] private PlayerData playerData;
     [SerializeField] private Image weaponIcon;
 	[SerializeField] private Image weaponChargeFill;
+	[SerializeField] private Color lowChargeFillColor;
+	[SerializeField] private Color fullyChargeFillColor;
 
-	private void OnEnable()
-	{
-		WeaponController.OnChangeWeapon += OnChangeSlot;
-		
-	}
-
-	private void OnChangeSlot(Weapon weaponObj)
+	public void OnChangeSlot(Weapon weaponObj)
 	{
 		weaponIcon.sprite = weaponObj.Data.Icon;
 	}
-	private void OnChargeWeapon(float amount)
+	public void OnChargeWeapon(float amount)
 	{
 		weaponChargeFill.fillAmount = amount;
-	}
-
-	private void OnDisable()
-	{
-		WeaponController.OnChangeWeapon -= OnChangeSlot;
+		weaponChargeFill.color = Color.Lerp(lowChargeFillColor, fullyChargeFillColor, amount);
 	}
 }

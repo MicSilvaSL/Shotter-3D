@@ -40,7 +40,7 @@ public class PlayerMotor : MonoBehaviour, IMovePosition
 		_velocity.y = jumpHeight * Time.deltaTime;
 	}
 
-	void Update()
+	private void FixedUpdate()
     {
 		_isGrounded = Physics.CheckSphere(groundCheckPos.position, groundCheckRadius, groundLayer);
 

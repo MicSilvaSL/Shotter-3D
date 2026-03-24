@@ -1,9 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class LaserWeapon : Weapon
 {
+	[SerializeField] private float maxRange = 10;
+	[SerializeField] private LayerMask _layerTarget;
+
 	private bool _isOnUse;
+	
 
 	public UnityEvent OnTurnOnLaser;
 	public UnityEvent OnTurnOffLaser;
@@ -32,11 +37,13 @@ public class LaserWeapon : Weapon
 		if (!_isOnUse)
 			return;
 
-		Debug.DrawRay(base.WeaponAim.Aim.origin, base.WeaponAim.Aim.direction * base.WeaponAim.MaxRange, Color.yellow);
+		Ray laserAim = new Ray(ShootPoint.position, ShootPoint.forward);
+
+		Debug.DrawRay(laserAim.origin, laserAim.direction * maxRange, Color.yellow);
 		
-		if (Physics.Raycast(base.WeaponAim.Aim, out RaycastHit hitInfo, base.WeaponAim.MaxRange, base.WeaponAim.TargetLayer))
+		if (Physics.Raycast(laserAim, out RaycastHit hitInfo, maxRange, _layerTarget))
 		{
-			OnRayUse.Invoke(base.WeaponAim.Aim.origin, hitInfo.point);
+			OnRayUse.Invoke(laserAim.origin, hitInfo.point);
 			
 			if (base.CanShoot())
 			{
@@ -50,7 +57,7 @@ public class LaserWeapon : Weapon
 		}
 		else
 		{
-			OnRayUse.Invoke(base.WeaponAim.Aim.origin, base.WeaponAim.Aim.origin + base.WeaponAim.Aim.direction * base.WeaponAim.MaxRange);
+			OnRayUse.Invoke(laserAim.origin, laserAim.origin + laserAim.direction * maxRange);
 		}
 
 

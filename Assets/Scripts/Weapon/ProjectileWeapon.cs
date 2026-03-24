@@ -21,12 +21,23 @@ public class ProjectileWeapon : Weapon
 	private bool _isFullyCharged;
 	private float _chargeTimer;
 	private bool _chargeThreshold;
-	
+
+
+	private void OnEnable()
+	{
+		ResetChargeShoot();
+	}
 
 	private void OnDisable()
 	{
+		ResetChargeShoot();
+	}
+
+	private void ResetChargeShoot()
+	{
 		_isCharging = false;
 		_chargeTimer = 0;
+		OnChargeWeapon?.Invoke(0);
 	}
 
 	private void Update()
@@ -49,7 +60,7 @@ public class ProjectileWeapon : Weapon
 
 		if (_chargeTimer > chargeTime * 0.3f && !_chargeThreshold) 
 		{
-			OnStartChargeWeapon.Invoke();
+			OnStartChargeWeapon?.Invoke();
 			_chargeThreshold = true;
 		}
 			
@@ -58,10 +69,10 @@ public class ProjectileWeapon : Weapon
 		{
 			_chargeTimer = chargeTime;
 			_isFullyCharged = true;
-			OnFullyChageWeapon.Invoke();
+			OnFullyChageWeapon?.Invoke();
 		}
 
-		OnChargeWeapon.Invoke(_chargeTimer / chargeTime);
+		OnChargeWeapon?.Invoke(_chargeTimer / chargeTime);
 	}
 
 	public override void StartShoot()
@@ -71,8 +82,8 @@ public class ProjectileWeapon : Weapon
 
 		base.SetNextShootTime();
 		
-		ProjectileBase shotInstance = Instantiate(shootPrefab, base.WeaponAim.Aim.origin, Quaternion.identity);
-		shotInstance.SetMovement(base.WeaponAim.Aim.direction);
+		ProjectileBase shotInstance = Instantiate(shootPrefab, base.ShootPoint.position, Quaternion.identity);
+		shotInstance.SetMovement(base.ShootPoint.forward);
 		shotInstance.SetDamage(base.Data.Damage);
 
 		_isFullyCharged = false;
@@ -90,18 +101,24 @@ public class ProjectileWeapon : Weapon
 		_isCharging = false;
 		_chargeThreshold = false;
 
-		OnCancelChargeWeapon.Invoke();
+		OnCancelChargeWeapon?.Invoke();
 
 		if (!_isFullyCharged) return;
 
-		ProjectileBase shotInstance = Instantiate(chargeShootPrefab, base.WeaponAim.Aim.origin, Quaternion.identity);
-		shotInstance.SetMovement(base.WeaponAim.Aim.direction);
+		ProjectileBase shotInstance = Instantiate(chargeShootPrefab, base.ShootPoint.position, Quaternion.identity);
+		shotInstance.SetMovement(base.ShootPoint.forward);
 		shotInstance.SetDamage(base.Data.Damage * 2);
 
 		_isFullyCharged = false;
 
-		OnChargeWeapon.Invoke(0);
-		OnRelaseChargeWeapon.Invoke();
+		OnChargeWeapon?.Invoke(0);
+		OnRelaseChargeWeapon?.Invoke();
+	}
+
+	public void TriggerChargeShoot()
+	{
+		_isCharging = true;
+		_chargeTimer = 0;
 	}
 
 

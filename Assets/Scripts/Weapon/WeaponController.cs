@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WeaponController : MonoBehaviour
 {
 	[SerializeField] private InputManager input;
 
-	public static event Action<Weapon> OnChangeWeapon;
+	public UnityEvent<Weapon> OnChangeWeapon;
 
 	private Weapon[] _weaponsList;
 	
