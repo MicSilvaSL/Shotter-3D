@@ -4,26 +4,19 @@ using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
-	[SerializeField] private HealthSystem health;
-
 	[SerializeField] private Image hpFillBar;
 	[SerializeField] private TextMeshProUGUI hpTxtDisplay;
 
-	private void OnEnable()
-	{
-		health.OnHealthChange += UpdateHealth;
-	}
-
-	private void UpdateHealth(float amount)
+	public void UpdateHealth(HealthSystem health)
 	{
 		if (hpTxtDisplay != null)
-			hpTxtDisplay.text = amount.ToString();
+			hpTxtDisplay.text = health.CurrentHealth.ToString();
 
-		hpFillBar.fillAmount = amount / health.MaxHealth;
+		float percent = health.HealthPercent();
+
+		hpFillBar.fillAmount = percent;
+		hpFillBar.color = Color.Lerp(Color.indianRed, Color.cornflowerBlue, percent);
+
 	}
 
-	private void OnDisable()
-	{
-		health.OnHealthChange -= UpdateHealth;
-	}
 }

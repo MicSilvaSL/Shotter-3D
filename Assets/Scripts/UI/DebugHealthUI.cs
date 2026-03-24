@@ -9,21 +9,14 @@ public class DebugHealthUI : MonoBehaviour
 	[SerializeField] private Image hpFillBar;
 	[SerializeField] private TextMeshProUGUI hpTxtDisplay;
 
-	private void OnEnable()
-	{
-		health.OnHealthChange += UpdateHealth;
-	}
-
-	private void UpdateHealth(float amount)
+	public void UpdateHealth(float amount)
 	{
 		if (hpTxtDisplay != null)
 			hpTxtDisplay.text = amount.ToString();
 
-		hpFillBar.fillAmount = amount / health.MaxHealth;
-	}
+		float percent = amount / health.MaxHealth;
 
-	private void OnDisable()
-	{
-		health.OnHealthChange -= UpdateHealth;
+		hpFillBar.fillAmount = percent;
+
 	}
 }

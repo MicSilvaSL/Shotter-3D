@@ -1,15 +1,15 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HealthSystem : MonoBehaviour
 {
 
 	[SerializeField] private int maxHealth = 100;
-	
-	private float _currentHealth;
 
-	public event Action<float> OnHealthChange;
-	public event Action OnDeath;
+	public UnityEvent<HealthSystem> OnHealthChange;
+	public UnityEvent OnDeath;
+
+	private float _currentHealth;
 
 	public bool IsAlive => _currentHealth > 0;
 
@@ -20,7 +20,7 @@ public class HealthSystem : MonoBehaviour
 		private set 
 		{
 			_currentHealth = value;
-			OnHealthChange?.Invoke(_currentHealth);
+			OnHealthChange?.Invoke(this);
 		}
 	}
 	public int MaxHealth => maxHealth;
@@ -35,7 +35,7 @@ public class HealthSystem : MonoBehaviour
 		else if (amount >= maxHealth)
 			CurrentHealth = maxHealth;
 		else
-			CurrentHealth = amount; 
+			CurrentHealth = amount;
 	}
 
 	public void ReduceHealth(float reduceAmount)
@@ -48,7 +48,10 @@ public class HealthSystem : MonoBehaviour
 		ChangeHealth(_currentHealth + healAmount);
 	}
 
-	public void ResetHealth() => _currentHealth = maxHealth;
+	[ContextMenu("Reset Health")]
+	public void ResetHealth() => CurrentHealth = maxHealth;
+
+	public float HealthPercent() => _currentHealth / maxHealth;
 
 	private void OnEnable()
 	{

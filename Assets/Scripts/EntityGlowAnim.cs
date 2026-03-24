@@ -17,7 +17,7 @@ public class EntityGlowAnim : MonoBehaviour
 		_entityMat = GetComponent<MeshRenderer>().material;
 	}
 
-	[ContextMenu("asdfasdf")]
+	[ContextMenu("TriggerGlow")]
     public void TriggerGlow() 
     {
 		if (e_glowAnimation != null)

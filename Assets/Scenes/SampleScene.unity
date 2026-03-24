@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -203,12 +203,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 25
   m_fontSizeBase: 20
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 17
-  m_fontSizeMax: 64.6
+  m_fontSizeMax: 25
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -299,7 +299,6 @@ GameObject:
   - component: {fileID: 192990769}
   - component: {fileID: 192990768}
   - component: {fileID: 192990767}
-  - component: {fileID: 192990766}
   - component: {fileID: 192990772}
   - component: {fileID: 192990773}
   m_Layer: 7
@@ -309,18 +308,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &192990766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 192990764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f41acb1188e59b641a90fdbdad35133d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DebugEnemy
 --- !u!136 &192990767
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -493,9 +480,9 @@ RectTransform:
   - {fileID: 4614284}
   m_Father: {fileID: 1619479499}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 27.675003, y: -25}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &307557825
@@ -5828,7 +5815,6 @@ GameObject:
   - component: {fileID: 382319225}
   - component: {fileID: 382319224}
   - component: {fileID: 382319223}
-  - component: {fileID: 382319222}
   - component: {fileID: 382319221}
   - component: {fileID: 382319220}
   m_Layer: 7
@@ -5882,18 +5868,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &382319222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 382319219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f41acb1188e59b641a90fdbdad35133d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DebugEnemy
 --- !u!136 &382319223
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11646,9 +11620,9 @@ RectTransform:
   - {fileID: 329759763}
   m_Father: {fileID: 1619479499}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 177.67502, y: -25}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 239.3, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &818154413
@@ -13073,6 +13047,103 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1399802656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1399802659}
+  - component: {fileID: 1399802658}
+  - component: {fileID: 1399802657}
+  m_Layer: 0
+  m_Name: Player Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1399802657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399802656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0cd15f40b1e2d4ea4d3e2f8dce0105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageView
+  playerVolume: {fileID: 1399802658}
+  timeDamageView: 0.3
+  vignetteCurveAnimation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.18956497
+      value: 0.1555212
+      inSlope: -0.061362594
+      outSlope: -0.061362594
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9911658
+      value: 0.0032348633
+      inSlope: 0.08853321
+      outSlope: 0.08853321
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.19124363
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1399802658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399802656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 1
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 1ae160e9a52824a4b9d561a421e6c8b3, type: 2}
+--- !u!4 &1399802659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399802656}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.38959, y: 0, z: -0.00684}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18198,6 +18269,8 @@ GameObject:
   - component: {fileID: 1549766287}
   - component: {fileID: 1549766288}
   - component: {fileID: 1549766290}
+  - component: {fileID: 1549766292}
+  - component: {fileID: 1549766291}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -18269,6 +18342,79 @@ MonoBehaviour:
   gravity: 0.2
   jumpHeight: 10
   groundCheckRadius: 0.45
+--- !u!114 &1549766291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549766283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ffa5f5fb2228740b4200a913ae181b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
+  maxHealth: 100
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1619479501}
+        m_TargetAssemblyTypeName: HealthUI, Assembly-CSharp
+        m_MethodName: UpdateHealth
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1549766292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549766283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64fc49a20247924b9b0cbc6468579bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Damageble
+  OnDamageTaken:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1549766291}
+        m_TargetAssemblyTypeName: HealthSystem, Assembly-CSharp
+        m_MethodName: ReduceHealth
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1399802657}
+        m_TargetAssemblyTypeName: PlayerDamageView, Assembly-CSharp
+        m_MethodName: TriggerDamageView
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1551181953
 GameObject:
   m_ObjectHideFlags: 0
@@ -18361,7 +18507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1619479499
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18421,7 +18567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f395bec033225634da7631eb979a9430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthUI
-  health: {fileID: 0}
   hpFillBar: {fileID: 329759764}
   hpTxtDisplay: {fileID: 4614285}
 --- !u!1 &1636570311
@@ -28812,6 +28957,7 @@ SceneRoots:
   - {fileID: 110089057}
   - {fileID: 1337116224}
   - {fileID: 832575519}
+  - {fileID: 1399802659}
   - {fileID: 1533528347}
   - {fileID: 410087041}
   - {fileID: 1325144932}
