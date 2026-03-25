@@ -1,20 +1,29 @@
 using UnityEngine;
-using UnityEngine.Events;
-
+using System.Linq;
 
 public class ShootOnRange : MonoBehaviour
 {
 	[SerializeField] private string targetTag;
+	[SerializeField] private LayerMask layerTarget;
+	[SerializeField] private float range;
 	[SerializeField] private ProjectileWeapon weaponProjectile;
 	[SerializeField] private Transform centerPoint;
 
-	private Transform _target = null;
+	private Collider[] _targets = new Collider [5];
+	private Collider _closetTarget;
 
 	private void Update()
 	{
-		if (_target == null) return;
+		if (_targets.Length <= 0) return;
 
-		centerPoint.forward = (_target.position - centerPoint.position).normalized;
+		Collider nearTarget = GetNearTarget();
+		if (!nearTarget.Equals(_closetTarget))
+			_closetTarget = nearTarget;
+
+		if (_closetTarget == null) return;
+
+		Vector3 distance = _closetTarget.transform.position - centerPoint.position;
+		centerPoint.forward = distance.normalized;
 
 
 		if (weaponProjectile.CanShoot())
@@ -23,25 +32,25 @@ public class ShootOnRange : MonoBehaviour
 			weaponProjectile.EndShoot();
 		}
 	}
-    
 
-	private void OnTriggerEnter(Collider other)
+	private void FixedUpdate()
 	{
-		if (other.gameObject.CompareTag(targetTag))
-		{
-			_target = other.transform;
-		}
-			
-
+		//TODO: NonAlloc
+		_targets = Physics.OverlapSphere(centerPoint.position, range, layerTarget);
 	}
 
-	private void OnTriggerExit(Collider other)
+	private Collider GetNearTarget()
 	{
-		if (other.gameObject.CompareTag(targetTag))
-		{
-			_target = null;
-		}
-			
+		if (_targets.Length <= 0) return null;
+		if (_targets.Length == 1) return _targets[0];
 
+		return _targets.OrderBy(t => Vector3.Distance(centerPoint.position, t.transform.position)).ToArray()[0];
+	}
+
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawWireSphere(centerPoint.position, range);
 	}
 }

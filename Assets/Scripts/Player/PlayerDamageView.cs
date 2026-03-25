@@ -21,12 +21,15 @@ public class PlayerDamageView : MonoBehaviour
 
 	private IEnumerator EDamageFlash()
 	{
-		Debug.Log("asdfasdf");
 		float timeElapsed = 0;
+
 		while(timeElapsed < timeDamageView)
 		{
 			if (playerVolume.profile.TryGet(out Vignette vignette))
-			{ 
+			{
+				if (timeDamageView <= 0)
+					timeDamageView = 0.1f;
+
 				vignette.intensity.value = vignetteCurveAnimation.Evaluate(timeElapsed/timeDamageView);
 			}
 			else

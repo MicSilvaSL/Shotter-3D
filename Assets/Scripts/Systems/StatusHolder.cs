@@ -7,10 +7,17 @@ public class StatusHolder : MonoBehaviour
 	private List<StatusEffect> _removeEffects = new();
 
 	private bool _hasStarted = false;
+    private bool _canApply = true;
 
+	private void Awake()
+	{
+		_canApply = true;
+	}
 
-    void Update()
+	void Update()
     {
+        if (!_canApply) return;
+
         if (_timerByEffect.Count < 0 )
         {
             if (_hasStarted)
@@ -44,7 +51,8 @@ public class StatusHolder : MonoBehaviour
 
     public void AddEffect(StatusEffect effect)
     {
-        if (effect == null) return;
+		if (!_canApply) return;
+		if (effect == null) return;
 
         if (!_timerByEffect.ContainsKey(effect))
         {
@@ -61,6 +69,23 @@ public class StatusHolder : MonoBehaviour
         _hasStarted = true;
 
 	}
+
+    public void ResetEffect()
+    {
+        _canApply = false;
+
+		foreach (StatusEffect status in _timerByEffect.Keys)
+		{
+			status.ResetStatusEffect(this.transform);
+            Destroy(_timerByEffect[status].feedback.gameObject);
+
+		}
+
+		_removeEffects.Clear();
+        _timerByEffect.Clear();
+
+        Destroy(this);
+    }
 
     private class StatusData
     {

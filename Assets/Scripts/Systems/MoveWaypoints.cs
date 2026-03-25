@@ -10,8 +10,12 @@ public class MovePathways : MonoBehaviour , IMovePosition
 	private float _internalSpeed;
 	private float _movePercent = 1;
 
-	private void Update()
+	private bool _canMove = true;
+
+	private void FixedUpdate()
 	{
+		if (!_canMove) return;
+
 		float distanceToTarget = Vector3.Distance(this.transform.position, points[_index]);
 
 		//Debug.Log(_index);
@@ -38,6 +42,8 @@ public class MovePathways : MonoBehaviour , IMovePosition
 	}
 
 	public void SetMovementPercent(float percent = 1) => _movePercent = Mathf.Clamp(Mathf.Abs(percent), 0.1f, 1);
+
+	public void TriggerMovement(bool canMove) => _canMove = canMove;
 
 	private void OnDrawGizmos()
 	{

@@ -17,9 +17,15 @@ public class EntityGlowAnim : MonoBehaviour
 		_entityMat = GetComponent<MeshRenderer>().material;
 	}
 
+	private void OnEnable()
+	{
+		_entityMat.SetInt(FRESNEL_TRIGGER, 0);
+	}
+
 	[ContextMenu("TriggerGlow")]
     public void TriggerGlow() 
     {
+		if (!this.gameObject.activeSelf) return;
 		if (e_glowAnimation != null)
             StopCoroutine(e_glowAnimation);
 
@@ -49,6 +55,12 @@ public class EntityGlowAnim : MonoBehaviour
 		}
 
 		_entityMat.SetInt(FRESNEL_TRIGGER, 0);
+	}
+
+	private void OnDisable()
+	{
+		if (e_glowAnimation != null)
+			StopCoroutine(e_glowAnimation);
 	}
 
 

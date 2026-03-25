@@ -8,8 +8,8 @@ public class Damageble : MonoBehaviour
 
 	public void TakeDamage(float damage) 
 	{
-		OnDamageTaken.Invoke(damage);
-		OnDamage.Invoke();
+		OnDamageTaken?.Invoke(damage);
+		OnDamage?.Invoke();
 	}
 
 }
